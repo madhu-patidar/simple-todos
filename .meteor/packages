@@ -20,3 +20,5 @@ shell-server@0.2.3            # Server-side component of the `meteor shell` comm
 reactive-dict
 accounts-ui
 accounts-password
+twbs:bootstrap
+peppelg:bootstrap-3-modal

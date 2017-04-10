@@ -18,16 +18,12 @@ Template.body.helpers({
   },
 });
 
-
-Template.body.events({
+Template.taskModal.events({
   'submit .new-task'(event) {
-    
     event.preventDefault();
- 
     const target = event.target;
     const text = target.text.value;
- 
-  
+   
     Tasks.insert({
       text,
       createdAt: new Date(), // current time
@@ -36,23 +32,33 @@ Template.body.events({
     });
     Meteor.call('tasks.insert', text);
     target.text.value = '';
+    Modal.hide('taskModal');
   },
+});
+
+
+Template.body.events({
   'change .hide-completed input'(event, instance) {
     instance.state.set('hideCompleted', event.target.checked);
   },
 });
 
-
 Template.body.helpers({
   tasks() {
   	 const instance = Template.instance();
     if (instance.state.get('hideCompleted')) {
-      // If hide completed is checked, filter tasks
+ 
       return Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
     }
     return Tasks.find({}, { sort: { createdAt: -1 } });
   },
    incompleteCount() {
     return Tasks.find({ checked: { $ne: true } }).count();
+  },
+});
+
+Template.body.events({
+    'click .toggle'() {
+     Modal.show('taskModal');
   },
 });

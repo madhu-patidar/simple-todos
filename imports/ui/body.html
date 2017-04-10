@@ -9,11 +9,9 @@
       </label>
        {{> loginButtons}}
        {{#if currentUser}}
-        <form class="new-task">
-          <input type="text" name="text" placeholder="Type to add new tasks" />
-        </form>
-      {{/if}}
-      
+          <br>
+          <button type="button" class="btn btn-default toggle" data-dismiss="modal">Add Task</button>
+       {{/if}}
     </header>
  
     <ul>
@@ -24,6 +22,26 @@
   </div>
 </body>
  
-
-
-
+<template name="taskModal">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add Task</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            <form class="new-task">
+              <input type="text" name="text" placeholder="Type to add new Task" />
+            </form>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+      
